@@ -1,0 +1,74 @@
+// pAequor DNA Mutation Exercise
+// Robert Pfaff robert@robertpfaff.net
+
+// Returns a random DNA base
+const returnRandBase = () => {
+  const dnaBases = ['A', 'T', 'C', 'G']
+  return dnaBases[Math.floor(Math.random() * 4)]
+}
+
+// Returns a random single strand of DNA containing 15 bases
+const mockUpStrand = () => {
+  const newStrand = []
+  for (let i = 0; i < 15; i++) {
+    newStrand.push(returnRandBase())
+  }
+  return newStrand
+}
+
+const pAequorFactory = (specimanNum, dna) => {
+  return {
+    specimanNum,
+    dna,
+    mutate() {
+      console.log()
+            console.log(`Speciman: ${paequor_obj1.specimanNum} DNA: ${paequor_obj1.dna}`)   
+      return
+      const randIndex = Math.floor(Math.random() * this.dna.length);
+      let newBase = returnRandBase();
+      while (this.dna[randIndex] === newBase) {
+        newBase = returnRandBase();
+        }
+        this.dna[randIndex] = newBase;
+        return this.dna;
+    },
+    compareDNA(paequor_obj2) {
+      paequor_obj2.specimanNum = this.specimanNum;
+      paequor_obj2.dna = paequor_obj2;
+      const similarities = this.dna.reduce((prev, curr, index, array) => {
+        if (array[index] === paequor_obj2[index]) {
+          return prev + 1;
+        } else {
+          return prev;
+        }
+      }, 0);
+      const percentOfDNAshared = (similarities / this.dna.length) * 100;
+      const percentageTo2Deci = percentOfDNAshared.toFixed(2);
+      paequor_obj2.dna = this.dna;
+      console.log(`Speciman: ${paequor_obj2.specimanNum+1} DNA: ${paequor_obj2.dna}`)    
+      console.log(`${this.specimanNum} and ${(paequor_obj2.specimanNum+1)} share ${percentageTo2Deci}% DNA in common.`);
+    },
+    willLikelySurvive() {
+      const cOrG = this.dna.filter(base => base === "C" || base === "G");
+      willSurvive = cOrG.length / this.dna.length >= 0.6;
+      return console.log(`Will ${paequor_obj2.specimanNum+1} likely survive? ${willSurvive}`)
+    },
+}};
+
+// Set specimanNum to zero
+// Run 30 scanearios.
+// Run 30 each method 30 times.
+
+for (let specimanNum=0; specimanNum<30; specimanNum++) {
+
+// Increase speciman number each time. 
+// Create DNA strand
+paequor_obj1 = pAequorFactory(specimanNum, mockUpStrand())
+paequor_obj1
+paequor_obj1.mutate()
+paequor_obj2 = pAequorFactory(specimanNum, mockUpStrand())
+paequor_obj2.compareDNA(mockUpStrand())
+paequor_obj1.willLikelySurvive()
+
+// end for loop counter
+}
